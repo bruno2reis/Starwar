@@ -32,5 +32,10 @@ public class Planeta {
 	public void setTerreno(String terreno) {
 		this.terreno = terreno;
 	}
+	public Planeta criarId() {
+		setId(new ObjectId());
+		
+		return this;
+	}
 
 }
