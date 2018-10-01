@@ -2,12 +2,26 @@ package br.com.starwars.models;
 
 import org.bson.types.ObjectId;
 
-public class Planeta {
+public class PlanetaVO {
 	
 	private ObjectId id;
 	private String nome;
 	private String clima;
 	private String terreno;
+	private int numeroDeAparicoes;
+	
+	/**
+	 * @return the numeroDeAparicoes
+	 */
+	public int getNumeroDeAparicoes() {
+		return numeroDeAparicoes;
+	}
+	/**
+	 * @param numeroDeAparicoes the numeroDeAparicoes to set
+	 */
+	public void setNumeroDeAparicoes(int numeroDeAparicoes) {
+		this.numeroDeAparicoes = numeroDeAparicoes;
+	}
 	public ObjectId getId() {
 		return id;
 	}
@@ -32,7 +46,7 @@ public class Planeta {
 	public void setTerreno(String terreno) {
 		this.terreno = terreno;
 	}
-	public Planeta criarId() {
+	public PlanetaVO criarId() {
 		setId(new ObjectId());
 		
 		return this;

@@ -19,17 +19,25 @@
             <th style="text-align: center;">Nome</th>
             <th style="text-align: center;">Clima</th>
             <th style="text-align: center;">Terreno</th>
+               <th style="text-align: center;">Numero de Aparições</th>
           </tr>
         </thead>
         <tr th:each="planeta : ${planetas}">
           <td style="text-align: center;"><span th:text="${planeta.nome}"></span></td>
           <td style="text-align: center;"><span th:text="${planeta.clima}"></span></td>
           <td style="text-align: center;"><span th:text="${planeta.terreno}"></span></td>
+          <td style="text-align: center;"><span th:text="${planeta.numeroDeAparicoes}"></span></td>
+          
           <td style="text-align: center;">
             <a th:href="@{'/planeta/visualizar/' + ${planeta.id}}" title="Visualizar"> 
               <i class="tiny material-icons ">perm_contact_calendar</i>
             </a>
+             <a th:href="@{'/planeta/excluir/' + ${planeta.id}}" title="Deletar">
+	          	<i class="tiny material-icons icon-blue">note_add</i>
+	         </a>
           </td>
+          
+         
         </tr>
       </table>
     </div>

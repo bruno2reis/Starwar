@@ -11,16 +11,16 @@ import org.bson.codecs.DecoderContext;
 import org.bson.codecs.EncoderContext;
 import org.bson.types.ObjectId;
 
-import br.com.starwars.models.Planeta;
+import br.com.starwars.models.PlanetaVO;
 
-public class PlanetaCodec implements CollectibleCodec<Planeta> {
+public class PlanetaCodec implements CollectibleCodec<PlanetaVO> {
 
 	private Codec<Document> codec;
 	
 	public PlanetaCodec(Codec<Document> codec) {
 		this.codec = codec;
 	}	
-	public void encode(BsonWriter writer, Planeta planeta, EncoderContext encoder) {
+	public void encode(BsonWriter writer, PlanetaVO planeta, EncoderContext encoder) {
 
 		ObjectId id = planeta.getId();
 		String nome = planeta.getNome();
@@ -36,14 +36,14 @@ public class PlanetaCodec implements CollectibleCodec<Planeta> {
 		codec.encode(writer, document, encoder);
 	}
 
-	public Class<Planeta> getEncoderClass() {
-		return Planeta.class;
+	public Class<PlanetaVO> getEncoderClass() {
+		return PlanetaVO.class;
 	}
 
-	public Planeta decode(BsonReader reader, DecoderContext decoder) {
+	public PlanetaVO decode(BsonReader reader, DecoderContext decoder) {
 		
 		Document document = codec.decode(reader, decoder);
-		Planeta planeta = new Planeta();
+		PlanetaVO planeta = new PlanetaVO();
 		planeta.setId(document.getObjectId("_id"));
 		planeta.setNome(document.getString("nome"));
 		planeta.setClima(document.getString("clima"));
@@ -52,15 +52,15 @@ public class PlanetaCodec implements CollectibleCodec<Planeta> {
 		return planeta;
 	}
 
-	public boolean documentHasId(Planeta planeta) {
+	public boolean documentHasId(PlanetaVO planeta) {
 		return planeta.getId() == null;
 	}
 
-	public Planeta generateIdIfAbsentFromDocument(Planeta planeta) {
+	public PlanetaVO generateIdIfAbsentFromDocument(PlanetaVO planeta) {
 		return documentHasId(planeta) ? planeta.criarId() : planeta;
 	}
 
-	public BsonValue getDocumentId(Planeta planeta) {
+	public BsonValue getDocumentId(PlanetaVO planeta) {
 		if(!documentHasId(planeta)){
 			throw new IllegalStateException("Esse Documento não tem id");
 		}
